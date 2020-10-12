@@ -10,22 +10,25 @@ SCENARIO("Controller can control Fan") {
         Fan fan;
         double targetTemperature = 36.6;
         double tolerance = .5;
-        Controller oldController{thermometer, fan, targetTemperature, tolerance, nullptr};
+        Controller cut{thermometer, fan, targetTemperature, tolerance, nullptr};
 
-        WHEN("Temperature drops below 0") {
-            //thermometer.setTemperature(-1);
+        WHEN("Temperature drops below 0, when updateRpm is called") {
+            thermometer.temperature = -1.0;
             auto temperature = thermometer.getTemperature();
             REQUIRE(temperature < 0);
+            cut.updateRpm();
 
             THEN("Fan should be disabled") {
                 REQUIRE(fan.getSpeed() == 0);
             }
         }
 
-        WHEN("Temperature rise above 100") {
-            //thermometer.setTemperature(-1);
+        WHEN("Temperature rise above 100, when updateRpm is called") {
+            thermometer.temperature = 101.0;
             auto temperature = thermometer.getTemperature();
-            REQUIRE(temperature > 0);
+            REQUIRE(temperature > 100);
+            cut.updateRpm();
+        
 
             THEN("Fan should work at max speed") {
                 constexpr int maxSpeed = 3000;

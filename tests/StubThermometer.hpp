@@ -3,7 +3,8 @@
 
 class StubThermometer : public IThermometer {
 public:
+    double temperature {};
     double getTemperature() const override {
-        return -1.0;
+        return temperature;
     }
 };

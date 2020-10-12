@@ -7,8 +7,9 @@ class LcdDisplay;
 
 class Controller {
     IThermometer& thermometer_;
+    Fan& fan_;
 public:
-    Controller(IThermometer& t, Fan, double, double, std::shared_ptr<LcdDisplay>);
+    Controller(IThermometer& t, Fan& f, double, double, std::shared_ptr<LcdDisplay>);
     void updateRpm();
     void displayInfo();
 };
