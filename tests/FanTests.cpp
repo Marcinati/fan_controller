@@ -2,7 +2,7 @@
 #include "external/catch.hpp"
 #include "Fan.hpp"
 
-TEST_CASE("Fan - setSpeed() behavior", "[Fan]") {
+TEST_CASE("Fan - setSpeed() behavior", "[Fan]") { //??
 
     Fan f{};
     auto disabledRpm = 0;
